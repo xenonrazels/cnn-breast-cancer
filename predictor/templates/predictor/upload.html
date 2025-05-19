@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breast Cancer Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .container { max-width: 600px; margin: auto; }
+        .form-group { margin: 20px 0; }
+        .result { margin-top: 20px; font-weight: bold; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Breast Cancer Prediction</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="image">Upload Mammogram Image (JPEG):</label>
+                <input type="file" id="image" name="image" accept="image/jpeg" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        {% if result %}
+            <div class="result">
+                Prediction: {{ result }}
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="error">
+                Error: {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
